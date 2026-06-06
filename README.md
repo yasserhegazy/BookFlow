@@ -46,28 +46,48 @@ Each module should own its controllers, DTOs, entities, repositories, mappers, a
 
 ## Current Status
 
-The repository currently contains:
+Sprint 0 foundation is in place:
 
-- Maven wrapper, Spring Boot application class, and `application.properties`
+- Maven wrapper and Spring Boot application class
+- Java package root: `com.bookflow`
+- Feature package skeleton for the modular monolith
+- Profile config: `dev`, `test`, and `prod`
+- PostgreSQL and Redis Docker Compose services
+- Actuator health and OpenAPI/Swagger dependencies
 - Basic context-load test
 - Requirements and design documents in `docs/`
 
-The current `pom.xml` includes Spring Web, Validation, DevTools, and Spring Boot Test.
+The `docs/` folder is local reference material and does not need to be pushed.
 
-## Important Setup Notes
+## Local Setup
 
-Before deeper implementation, align setup with the sprint plan:
+Requirements:
 
-- Add JPA, PostgreSQL, Flyway, Security, Actuator, Redis, OpenAPI, and Testcontainers
-- Create the base feature package structure
-- Decide whether `docs/` should stay ignored by Git
+- Java 21
+- Docker and Docker Compose
+- Maven wrapper from this repo
 
 ## Local Commands
 
 ```bash
+docker compose up -d
 ./mvnw test
 ./mvnw spring-boot:run
 ```
+
+If a local port is already busy:
+
+```bash
+BOOKFLOW_POSTGRES_PORT=5433 BOOKFLOW_REDIS_PORT=6380 docker compose up -d
+BOOKFLOW_DB_URL=jdbc:postgresql://localhost:5433/bookflow BOOKFLOW_REDIS_PORT=6380 ./mvnw spring-boot:run
+```
+
+If app port `8080` is busy, add a free port such as `SERVER_PORT=18080` to the run command.
+
+Useful URLs:
+
+- Health: `http://localhost:8080/actuator/health`
+- Swagger UI: `http://localhost:8080/swagger-ui.html`
 
 ## First Implementation Target
 
