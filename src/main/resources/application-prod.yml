@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: ${BOOKFLOW_DB_URL}
+    username: ${BOOKFLOW_DB_USERNAME}
+    password: ${BOOKFLOW_DB_PASSWORD}
+  data:
+    redis:
+      host: ${BOOKFLOW_REDIS_HOST}
+      port: ${BOOKFLOW_REDIS_PORT:6379}
+  flyway:
+    enabled: true
+  jpa:
+    properties:
+      hibernate:
+        format_sql: false
+
+logging:
+  level:
+    com.bookflow: info

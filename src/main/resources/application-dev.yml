@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: ${BOOKFLOW_DB_URL:jdbc:postgresql://localhost:5432/bookflow}
+    username: ${BOOKFLOW_DB_USERNAME:bookflow}
+    password: ${BOOKFLOW_DB_PASSWORD:bookflow}
+  data:
+    redis:
+      host: ${BOOKFLOW_REDIS_HOST:localhost}
+      port: ${BOOKFLOW_REDIS_PORT:6379}
+  flyway:
+    enabled: true
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+
+logging:
+  level:
+    com.bookflow: debug
