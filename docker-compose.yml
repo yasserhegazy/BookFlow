@@ -1,0 +1,34 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: bookflow-postgres
+    environment:
+      POSTGRES_DB: bookflow
+      POSTGRES_USER: bookflow
+      POSTGRES_PASSWORD: bookflow
+    ports:
+      - "${BOOKFLOW_POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - bookflow_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bookflow -d bookflow"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: bookflow-redis
+    ports:
+      - "${BOOKFLOW_REDIS_PORT:-6379}:6379"
+    volumes:
+      - bookflow_redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  bookflow_postgres_data:
+  bookflow_redis_data:
