@@ -87,10 +87,13 @@ If app port `8080` is busy, add a free port such as `SERVER_PORT=18080` to the r
 Useful URLs:
 
 - Health: `http://localhost:8080/actuator/health`
-- Swagger UI: `http://localhost:8080/swagger-ui.html`
+- Swagger UI: `http://localhost:8080/swagger-ui/index.html`
+- OpenAPI JSON: `http://localhost:8080/v3/api-docs`
+
+If you run the app on `SERVER_PORT=18080`, use the same paths with `http://localhost:18080`.
 
 ## First Implementation Target
 
-Start with Sprint 1: common backend foundation.
+Sprint 1 common backend foundation is the current implementation target.
 
 Focus on standard responses, error handling, validation formatting, base exceptions, pagination, and Swagger/OpenAPI setup.
