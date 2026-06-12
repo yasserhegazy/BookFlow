@@ -1,0 +1,7 @@
+INSERT INTO roles (name)
+VALUES
+    ('SUPER_ADMIN'),
+    ('BUSINESS_OWNER'),
+    ('STAFF'),
+    ('CUSTOMER')
+ON CONFLICT (name) DO NOTHING;

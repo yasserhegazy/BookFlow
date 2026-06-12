@@ -46,15 +46,16 @@ Each module should own its controllers, DTOs, entities, repositories, mappers, a
 
 ## Current Status
 
-Sprint 0 foundation is in place:
+Sprint 2 foundation is in place:
 
 - Maven wrapper and Spring Boot application class
 - Java package root: `com.bookflow`
 - Feature package skeleton for the modular monolith
 - Profile config: `dev`, `test`, and `prod`
 - PostgreSQL and Redis Docker Compose services
-- Actuator health and OpenAPI/Swagger dependencies
-- Basic context-load test
+- Standard API responses, exceptions, validation errors, and OpenAPI config
+- Flyway migrations for users, roles, user roles, and refresh tokens
+- JPA entities, repositories, auditing, and PostgreSQL-backed tests
 - Requirements and design documents in `docs/`
 
 The `docs/` folder is local reference material and does not need to be pushed.
@@ -92,8 +93,6 @@ Useful URLs:
 
 If you run the app on `SERVER_PORT=18080`, use the same paths with `http://localhost:18080`.
 
-## First Implementation Target
+## Next Implementation Target
 
-Sprint 1 common backend foundation is the current implementation target.
-
-Focus on standard responses, error handling, validation formatting, base exceptions, pagination, and Swagger/OpenAPI setup.
+Sprint 3: authentication and security with registration, login, JWT, refresh tokens, logout, and current user support.

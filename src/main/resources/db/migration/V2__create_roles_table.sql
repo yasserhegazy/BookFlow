@@ -1,0 +1,6 @@
+CREATE TABLE roles (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    CONSTRAINT uk_roles_name UNIQUE (name)
+);
