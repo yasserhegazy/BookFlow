@@ -17,3 +17,7 @@ spring:
 logging:
   level:
     com.bookflow: debug
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:bookflow-dev-secret-key-that-is-at-least-256-bits-long-for-hs256-algorithm}
