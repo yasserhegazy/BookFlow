@@ -1,5 +1,11 @@
 package com.bookflow.common.exception;
 
+import com.bookflow.auth.service.AuthService;
+import com.bookflow.auth.service.CustomUserDetailsService;
+import com.bookflow.security.BearerAuthenticationEntryPoint;
+import com.bookflow.security.BookFlowAccessDeniedHandler;
+import com.bookflow.security.CurrentUserService;
+import com.bookflow.security.JwtAuthenticationFilter;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -9,6 +15,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +38,24 @@ class GlobalExceptionHandlerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
+
+	@MockitoBean
+	private AuthService authService;
+
+	@MockitoBean
+	private CurrentUserService currentUserService;
+
+	@MockitoBean
+	private JwtAuthenticationFilter jwtAuthenticationFilter;
+
+	@MockitoBean
+	private CustomUserDetailsService customUserDetailsService;
+
+	@MockitoBean
+	private BearerAuthenticationEntryPoint bearerAuthenticationEntryPoint;
+
+	@MockitoBean
+	private BookFlowAccessDeniedHandler bookFlowAccessDeniedHandler;
 
 	@Test
 	void shouldReturnStandardValidationErrorResponse() throws Exception {
